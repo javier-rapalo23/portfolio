@@ -23,7 +23,7 @@ const Projects = () => {
       description: t('projects.project3.description'),
       tech: ["React", "JavaScript", "Vite"],
       github: "https://github.com/javier-rapalo23/Finmaster",
-      demo: "#"
+      demo: "https://github.com/javier-rapalo23/Finmaster/releases/download/v1.0.2/app-release.apk"
     },
     {
       title: t('projects.project4.title'),

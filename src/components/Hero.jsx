@@ -4,15 +4,15 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-between max-w-7xl mx-auto px-8 pt-24 pb-8 gap-16">
+    <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 pt-24 pb-8 gap-16">
       <div className="flex-1 animate-fade-in-up">
-        <h1 className="text-6xl font-extrabold mb-4 leading-tight">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
           {t('hero.greeting')} <span className="bg-gradient-primary bg-clip-text text-transparent">Javier Orellana Rápalo</span>
         </h1>
-        <h2 className="text-3xl mb-6 font-semibold" style={{color: '#94A3B8'}}>
+        <h2 className="text-2xl md:text-3xl mb-6 font-semibold" style={{color: '#94A3B8'}}>
           {t('hero.title')}
         </h2>
-        <p className="text-xl mb-8 leading-relaxed" style={{color: '#E5E7EB'}}>
+        <p className="text-lg md:text-xl mb-8 leading-relaxed" style={{color: '#E5E7EB'}}>
           {t('hero.description')}
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -33,12 +33,12 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="flex-1 flex justify-center items-center">
-        <div className="relative">
+      <div className="flex justify-center items-center w-full md:flex-1 mt-8 md:mt-0">
+        <div className="relative w-64 h-64 md:w-96 md:h-96">
           <img 
             src="/profile.jpg" 
             alt="Javier Orellana Rápalo" 
-            className="w-96 h-96 rounded-full object-cover border-4 shadow-2xl"
+            className="w-full h-full rounded-full object-cover border-4 shadow-2xl"
             style={{borderColor: '#38BDF8', boxShadow: '0 0 60px rgba(56, 189, 248, 0.3)'}}
           />
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-transparent to-sky-400/20 animate-pulse-slow"></div>
