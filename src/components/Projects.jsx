@@ -16,7 +16,7 @@ const Projects = () => {
       description: t('projects.project2.description'),
       tech: ["React", "Node.js", "PostgreSQL", "REST API"],
       github: "https://github.com/javier-rapalo23/VI-ERP",
-      demo: "#"
+      demo: "https://vi-erp-nine.vercel.app"
     },
     {
       title: t('projects.project3.title'),
@@ -30,7 +30,7 @@ const Projects = () => {
       description: t('projects.project4.description'),
       tech: ["React Native", "TypeScript", "Vite"],
       github: "https://github.com/javier-rapalo23/TiendaVicky",
-      demo: "#"
+      demo: "https://tienda-vicky.vercel.app/"
     }
   ];
 
