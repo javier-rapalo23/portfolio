@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -8,6 +9,7 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -16,10 +18,36 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(t('contact.successMessage'));
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      // Reemplaza estos valores con tus credenciales de EmailJS
+      const serviceId = import.meta.env.service_f24x3qm;
+      const templateId = import.meta.env.template_t15bot8;
+      const publicKey = import.meta.env.fMpxjQHfMK3jKIny_;
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Javier',
+        },
+        publicKey
+      );
+
+      alert(t('contact.successMessage'));
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error al enviar el email:', error);
+      alert(t('contact.errorMessage') || 'Error al enviar el mensaje. Por favor intenta de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -117,9 +145,10 @@ const Contact = () => {
             </div>
             <button 
               type="submit" 
-              className="w-full px-8 py-4 rounded-lg bg-gradient-primary text-white font-semibold hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 transition-all"
+              disabled={isSubmitting}
+              className="w-full px-8 py-4 rounded-lg bg-gradient-primary text-white font-semibold hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
-              {t('contact.sendButton')}
+              {isSubmitting ? (t('contact.sendingButton') || 'Enviando...') : t('contact.sendButton')}
             </button>
           </form>
         </div>

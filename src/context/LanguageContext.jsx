@@ -91,7 +91,7 @@ export const translations = {
       },
       project3: {
         title: 'Finmaster',
-        description: 'Aplicación web para gestión de formularios financieros con manejo avanzado de estado, validaciones y componentes reutilizables. Arquitectura frontend sólida.',
+        description: 'Aplicación móvil para gestión de formularios financieros con manejo avanzado de estado, validaciones y componentes reutilizables. Arquitectura frontend sólida.',
       },
       project4: {
         title: 'Tienda Vicky',
@@ -211,7 +211,7 @@ export const translations = {
       },
       project3: {
         title: 'Finmaster',
-        description: 'Web application for financial form management with advanced state management, validations and reusable components. Solid frontend architecture.',
+        description: 'Mobile application for financial form management with advanced state management, validations and reusable components. Solid frontend architecture.',
       },
       project4: {
         title: 'Tienda Vicky',
