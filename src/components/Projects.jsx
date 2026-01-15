@@ -21,21 +21,28 @@ const Projects = () => {
     {
       title: t('projects.project3.title'),
       description: t('projects.project3.description'),
-      tech: ["React", "JavaScript", "Vite"],
+      tech: ["React native", "JavaScript", "WatermelonDB"],
       github: "https://github.com/javier-rapalo23/Finmaster",
       demo: "https://github.com/javier-rapalo23/Finmaster/releases/download/v1.0.2/app-release.apk"
     },
     {
       title: t('projects.project4.title'),
       description: t('projects.project4.description'),
-      tech: ["React Native", "TypeScript", "Vite"],
+      tech: ["React", "TypeScript", "Vite"],
       github: "https://github.com/javier-rapalo23/TiendaVicky",
       demo: "https://tienda-vicky.vercel.app/"
+    },
+    {
+      title: t('projects.project5.title'),
+      description: t('projects.project5.description'),
+      tech: ["React","Go", "TypeScript", "Vite"],
+      github: "https://github.com/javier-rapalo23/freshcontrol-web",
+      demo: "https://freshcontrol-web.vercel.app/"
     }
   ];
 
   return (
-    <section id="projects" className="py-24 px-8">
+    <section id="projects" className="py-24 px-8" style={{backgroundColor: '#020617'}}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl text-center mb-12 bg-gradient-primary bg-clip-text text-transparent font-bold">
           {t('projects.title')}

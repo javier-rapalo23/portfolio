@@ -4,7 +4,7 @@ const About = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="py-24 px-8" style={{backgroundColor: '#020617'}}>
+    <section id="about" className="py-24 px-8" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)'}}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl text-center mb-12 bg-gradient-primary bg-clip-text text-transparent font-bold">
           {t('about.title')}

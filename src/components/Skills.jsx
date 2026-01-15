@@ -44,13 +44,13 @@ const Skills = () => {
   const duplicatedSkills = [...skills, ...skills, ...skills];
 
   return (
-    <section id="skills" className="py-24 px-8 overflow-hidden relative" style={{backgroundColor: '#020617'}}>
+    <section id="skills" className="py-24 px-8 overflow-hidden relative" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)'}}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl text-center mb-4 bg-gradient-primary bg-clip-text text-transparent font-bold">
           {t('skills.title')}
         </h2>
         <p className="text-center mb-12 text-lg" style={{color: '#94A3B8'}}>
-          Tecnologías y herramientas que domino
+          {t('skills.subtitle')}
         </p>
 
         <div className="relative">
@@ -89,10 +89,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Indicador de interacción */}
-        <div className="text-center mt-8 text-sm" style={{color: '#94A3B8'}}>
-          🎯 Pasa el cursor sobre las tarjetas para verlas mejor
-        </div>
+       
       </div>
 
       {/* Gradientes de fade en los bordes - fuera del contenedor */}

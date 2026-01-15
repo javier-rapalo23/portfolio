@@ -23,7 +23,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-8">
+    <section id="contact" className="py-24 px-8" style={{backgroundColor: '#020617'}}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl text-center mb-12 bg-gradient-primary bg-clip-text text-transparent font-bold">
           {t('contact.title')}

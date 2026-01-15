@@ -46,6 +46,28 @@ const Navbar = () => {
               </li>
               <li>
                 <a 
+                  onClick={() => scrollToSection('experience')}
+                  className="font-medium cursor-pointer transition-colors"
+                  style={{color: '#94A3B8'}}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}
+                >
+                  {t('nav.experience')}
+                </a>
+              </li>
+              <li>
+                <a 
+                  onClick={() => scrollToSection('education')}
+                  className="font-medium cursor-pointer transition-colors"
+                  style={{color: '#94A3B8'}}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}
+                >
+                  {t('nav.education')}
+                </a>
+              </li>
+              <li>
+                <a 
                   onClick={() => scrollToSection('projects')}
                   className="font-medium cursor-pointer transition-colors"
                   style={{color: '#94A3B8'}}
@@ -141,6 +163,24 @@ const Navbar = () => {
                   style={{color: '#94A3B8'}}
                 >
                   {t('nav.about')}
+                </a>
+              </li>
+              <li>
+                <a 
+                  onClick={() => scrollToSection('experience')}
+                  className="block py-2 font-medium cursor-pointer transition-colors"
+                  style={{color: '#94A3B8'}}
+                >
+                  {t('nav.experience')}
+                </a>
+              </li>
+              <li>
+                <a 
+                  onClick={() => scrollToSection('education')}
+                  className="block py-2 font-medium cursor-pointer transition-colors"
+                  style={{color: '#94A3B8'}}
+                >
+                  {t('nav.education')}
                 </a>
               </li>
               <li>

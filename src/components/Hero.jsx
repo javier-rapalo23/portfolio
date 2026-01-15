@@ -4,7 +4,7 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 pt-24 pb-8 gap-16">
+    <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 pt-24 pb-8 gap-16" >
       <div className="flex-1 animate-fade-in-up">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
           {t('hero.greeting')} <span className="bg-gradient-primary bg-clip-text text-transparent">Javier Orellana Rápalo</span>
