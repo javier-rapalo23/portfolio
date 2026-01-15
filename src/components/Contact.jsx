@@ -24,9 +24,9 @@ const Contact = () => {
 
     try {
       // Reemplaza estos valores con tus credenciales de EmailJS
-      const serviceId = import.meta.env.service_f24x3qm;
-      const templateId = import.meta.env.template_t15bot8;
-      const publicKey = import.meta.env.fMpxjQHfMK3jKIny_;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       await emailjs.send(
         serviceId,
