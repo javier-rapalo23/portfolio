@@ -94,7 +94,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="p-8 rounded-xl border" style={{backgroundColor: '#020617', borderColor: 'rgba(56, 189, 248, 0.2)'}}>
+          {/* <form onSubmit={handleSubmit} className="p-8 rounded-xl border" style={{backgroundColor: '#020617', borderColor: 'rgba(56, 189, 248, 0.2)'}}>
             <div className="mb-6">
               <label htmlFor="name" className="block mb-2 font-medium" style={{color: '#E5E7EB'}}>
                 {t('contact.nameLabel')}
@@ -150,7 +150,7 @@ const Contact = () => {
             >
               {isSubmitting ? (t('contact.sendingButton') || 'Enviando...') : t('contact.sendButton')}
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </section>

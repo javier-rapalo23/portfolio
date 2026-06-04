@@ -29,8 +29,8 @@ const Projects = () => {
       title: t('projects.project4.title'),
       description: t('projects.project4.description'),
       tech: ["React", "TypeScript", "Vite"],
-      github: "https://github.com/javier-rapalo23/TiendaVicky",
-      demo: "https://tienda-vicky.vercel.app/"
+      github: "https://github.com/javier-rapalo23/R-ControlWeb",
+      demo: "https://r-control-web.vercel.app/"
     },
     {
       title: t('projects.project5.title'),
@@ -38,7 +38,14 @@ const Projects = () => {
       tech: ["React","Go", "TypeScript", "Vite"],
       github: "https://github.com/javier-rapalo23/freshcontrol-web",
       demo: "https://freshcontrol-web.vercel.app/"
-    }
+    },
+    {
+      title: t('projects.project6.title'),
+      description: t('projects.project6.description'),
+      tech: ["React native", "TypeScript", "Sqlite"],
+      github: "https://github.com/javier-rapalo23/R-ControlApp",
+      demo: "https://github.com/javier-rapalo23/R-ControlApp/releases/download/v1.0.1/app-release.apk"
+    },
   ];
 
   return (
