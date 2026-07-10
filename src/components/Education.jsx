@@ -18,39 +18,38 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-24 px-8" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)'}}>
+    <section id="education" className="py-24 px-8 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl text-center mb-12 bg-gradient-primary bg-clip-text text-transparent font-bold">
+        <h2 className="text-4xl md:text-5xl text-center mb-16 font-semibold tracking-tight" style={{color: '#F5F5F7'}}>
           {t('education.title')}
         </h2>
-        <div className="space-y-8">
+        <div className="space-y-6">
           {education.map((edu) => (
             <div
               key={edu.id}
-              className="p-8 rounded-xl border hover:shadow-xl transition-all duration-300"
+              className="p-8 rounded-2xl border transition-colors duration-200"
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                borderColor: 'rgba(56, 189, 248, 0.2)',
+                backgroundColor: '#1d1d1f',
+                borderColor: 'rgba(255, 255, 255, 0.08)',
               }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div className="mb-4 md:mb-0">
-                  <h3 className="text-2xl font-bold mb-2" style={{color: '#38BDF8'}}>
+                  <h3 className="text-2xl font-semibold mb-2" style={{color: '#F5F5F7'}}>
                     {edu.degree}
                   </h3>
-                  <p className="text-xl mb-2" style={{color: '#E5E7EB'}}>
+                  <p className="text-lg mb-2" style={{color: '#a1a1a6'}}>
                     {edu.institution}
                   </p>
-                  <p className="text-sm" style={{color: '#94A3B8'}}>
+                  <p className="text-sm" style={{color: '#86868B'}}>
                     {edu.location}
                   </p>
                 </div>
                 <span
-                  className="px-4 py-2 rounded-full text-sm font-medium"
+                  className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap"
                   style={{
-                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                    color: '#38BDF8',
-                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    backgroundColor: 'rgba(41, 151, 255, 0.12)',
+                    color: '#2997FF',
                   }}
                 >
                   {edu.period}
@@ -58,17 +57,17 @@ const Education = () => {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold mb-3" style={{color: '#E5E7EB'}}>
-                  {t('education.highlights')}:
+                <h4 className="text-sm font-semibold mb-3 uppercase tracking-wide" style={{color: '#86868B'}}>
+                  {t('education.highlights')}
                 </h4>
                 <ul className="space-y-2">
                   {edu.highlights.map((highlight, index) => (
                     <li
                       key={index}
                       className="flex items-start"
-                      style={{color: '#94A3B8'}}
+                      style={{color: '#a1a1a6'}}
                     >
-                      <span className="mr-3 mt-1" style={{color: '#38BDF8'}}>▹</span>
+                      <span className="mr-3 mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{backgroundColor: '#2997FF'}}></span>
                       <span>{highlight}</span>
                     </li>
                   ))}

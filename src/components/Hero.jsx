@@ -4,44 +4,46 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 pt-24 pb-8 gap-16" >
+    <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-8 pt-32 pb-8 gap-16" >
       <div className="flex-1 animate-fade-in-up">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-          {t('hero.greeting')} <span className="bg-gradient-primary bg-clip-text text-transparent">Javier Orellana Rápalo</span>
+        <h1 className="text-4xl md:text-6xl font-semibold mb-4 leading-tight tracking-tight" style={{color: '#F5F5F7'}}>
+          {t('hero.greeting')} <span style={{color: '#2997FF'}}>Javier Orellana Rápalo</span>
         </h1>
-        <h2 className="text-2xl md:text-3xl mb-6 font-semibold" style={{color: '#94A3B8'}}>
+        <h2 className="text-2xl md:text-3xl mb-6 font-medium" style={{color: '#86868B'}}>
           {t('hero.title')}
         </h2>
-        <p className="text-lg md:text-xl mb-8 leading-relaxed" style={{color: '#E5E7EB'}}>
+        <p className="text-lg md:text-xl mb-10 leading-relaxed max-w-xl" style={{color: '#a1a1a6'}}>
           {t('hero.description')}
         </p>
-        <div className="flex gap-4 flex-wrap">
-          <a 
-            href="#projects" 
-            className="px-8 py-4 rounded-lg bg-gradient-primary text-white font-semibold transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40"
+        <div className="flex gap-4 flex-wrap items-center">
+          <a
+            href="#projects"
+            className="px-6 py-3 rounded-full font-medium transition-all duration-200"
+            style={{backgroundColor: '#2997FF', color: '#000'}}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#54a8ff'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2997FF'}
           >
             {t('hero.viewProjects')}
           </a>
-          <a 
-            href="#contact" 
-            className="px-8 py-4 rounded-lg bg-transparent font-semibold transition-all border-2"
-            style={{color: '#38BDF8', borderColor: '#38BDF8'}}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#38BDF8'; e.currentTarget.style.color = 'white'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#38BDF8'; }}
+          <a
+            href="#contact"
+            className="px-6 py-3 rounded-full font-medium transition-colors duration-200"
+            style={{color: '#2997FF'}}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#54a8ff'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#2997FF'}
           >
-            {t('hero.contact')}
+            {t('hero.contact')} &rarr;
           </a>
         </div>
       </div>
       <div className="flex justify-center items-center w-full md:flex-1 mt-8 md:mt-0">
-        <div className="relative w-64 h-64 md:w-96 md:h-96">
-          <img 
-            src="/profile.jpg" 
-            alt="Javier Orellana Rápalo" 
-            className="w-full h-full rounded-full object-cover border-4 shadow-2xl"
-            style={{borderColor: '#38BDF8', boxShadow: '0 0 60px rgba(56, 189, 248, 0.3)'}}
+        <div className="relative w-64 h-64 md:w-80 md:h-80">
+          <img
+            src="/profile.jpg"
+            alt="Javier Orellana Rápalo"
+            className="w-full h-full rounded-full object-cover border"
+            style={{borderColor: 'rgba(255, 255, 255, 0.12)'}}
           />
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-transparent to-sky-400/20 animate-pulse-slow"></div>
         </div>
       </div>
     </section>

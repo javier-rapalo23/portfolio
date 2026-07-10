@@ -22,8 +22,8 @@ function App() {
       <Projects />
       <Skills />
       <Contact />
-      <footer className="py-8 text-center border-t" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)', borderColor: 'rgba(56, 189, 248, 0.2)'}}>
-        <p style={{color: '#94A3B8'}}>
+      <footer className="py-8 text-center border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
+        <p className="text-sm" style={{color: '#86868B'}}>
           © 2025 Javier Orellana Rápalo. {t('footer.text')}
         </p>
       </footer>

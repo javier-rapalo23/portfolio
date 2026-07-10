@@ -14,10 +14,6 @@ const Experience = () => {
         t('experience.exp1.achievement1'),
         t('experience.exp1.achievement2'),
         t('experience.exp1.achievement3'),
-        t('experience.exp1.achievement4'),
-        t('experience.exp1.achievement5'),
-        t('experience.exp1.achievement6'),
-        t('experience.exp1.achievement7'),
       ],
       technologies: ['React', 'React Native', 'C#', '.NET', 'Node.js', 'SQL Server', 'Linux', 'Nginx', 'PM2'],
     },
@@ -51,39 +47,38 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 px-8" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)'}}>
+    <section id="experience" className="py-24 px-8 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl text-center mb-12 bg-gradient-primary bg-clip-text text-transparent font-bold">
+        <h2 className="text-4xl md:text-5xl text-center mb-16 font-semibold tracking-tight" style={{color: '#F5F5F7'}}>
           {t('experience.title')}
         </h2>
-        <div className="space-y-8">
+        <div className="space-y-6">
           {experiences.map((exp) => (
             <div
               key={exp.id}
-              className="p-8 rounded-xl border hover:shadow-xl transition-all duration-300"
+              className="p-8 rounded-2xl border transition-colors duration-200"
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                borderColor: 'rgba(56, 189, 248, 0.2)',
+                backgroundColor: '#1d1d1f',
+                borderColor: 'rgba(255, 255, 255, 0.08)',
               }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div className="mb-4 md:mb-0">
-                  <h3 className="text-2xl font-bold mb-2" style={{color: '#38BDF8'}}>
+                  <h3 className="text-2xl font-semibold mb-2" style={{color: '#F5F5F7'}}>
                     {exp.role}
                   </h3>
-                  <p className="text-xl mb-2" style={{color: '#E5E7EB'}}>
+                  <p className="text-lg mb-2" style={{color: '#a1a1a6'}}>
                     {exp.company}
                   </p>
-                  <p className="text-sm" style={{color: '#94A3B8'}}>
+                  <p className="text-sm" style={{color: '#86868B'}}>
                     {exp.location}
                   </p>
                 </div>
                 <span
-                  className="px-4 py-2 rounded-full text-sm font-medium"
+                  className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap"
                   style={{
-                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                    color: '#38BDF8',
-                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    backgroundColor: 'rgba(41, 151, 255, 0.12)',
+                    color: '#2997FF',
                   }}
                 >
                   {exp.period}
@@ -91,17 +86,17 @@ const Experience = () => {
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-semibold mb-3" style={{color: '#E5E7EB'}}>
-                  {t('experience.achievements')}:
+                <h4 className="text-sm font-semibold mb-3 uppercase tracking-wide" style={{color: '#86868B'}}>
+                  {t('experience.achievements')}
                 </h4>
                 <ul className="space-y-2">
                   {exp.achievements.map((achievement, index) => (
                     <li
                       key={index}
                       className="flex items-start"
-                      style={{color: '#94A3B8'}}
+                      style={{color: '#a1a1a6'}}
                     >
-                      <span className="mr-3 mt-1" style={{color: '#38BDF8'}}>▹</span>
+                      <span className="mr-3 mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{backgroundColor: '#2997FF'}}></span>
                       <span>{achievement}</span>
                     </li>
                   ))}
@@ -112,10 +107,10 @@ const Experience = () => {
                 {exp.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 rounded-full text-sm"
+                    className="px-3 py-1 rounded-full text-sm border"
                     style={{
-                      backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                      color: '#38BDF8',
+                      color: '#a1a1a6',
+                      borderColor: 'rgba(255, 255, 255, 0.12)',
                     }}
                   >
                     {tech}

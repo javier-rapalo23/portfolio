@@ -1,9 +1,9 @@
 import { useLanguage } from '../context/LanguageContext';
-import { 
-  SiReact, 
-  SiJavascript, 
-  SiTypescript, 
-  SiDotnet, 
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiDotnet,
   SiNodedotjs,
   SiExpress,
   SiPostgresql,
@@ -16,85 +16,69 @@ import {
   SiVite
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
-import { BiLogoPostgresql } from 'react-icons/bi';
 
 const Skills = () => {
   const { t } = useLanguage();
 
   const skills = [
-    { name: "React", icon: SiReact, category: "Frontend", color: "from-cyan-400 to-blue-500", iconColor: "#FFFFFF" },
-    { name: "React Native", icon: SiReact, category: "Mobile", color: "from-blue-500 to-purple-500", iconColor: "#FFFFFF" },
-    { name: "JavaScript", icon: SiJavascript, category: "Frontend", color: "from-yellow-300 to-yellow-500", iconColor: "#ffffffff" },
-    { name: "TypeScript", icon: SiTypescript, category: "Frontend", color: "from-blue-500 to-blue-700", iconColor: "#FFFFFF" },
-    { name: ".NET", icon: SiDotnet, category: "Backend", color: "from-purple-500 to-purple-700", iconColor: "#FFFFFF" },
-    { name: "C#", icon: TbBrandCSharp, category: "Backend", color: "from-purple-600 to-pink-500", iconColor: "#FFFFFF" },
-    { name: "Node.js", icon: SiNodedotjs, category: "Backend", color: "from-green-500 to-green-700", iconColor: "#FFFFFF" },
-    { name: "Express", icon: SiExpress, category: "Backend", color: "from-gray-600 to-gray-800", iconColor: "#FFFFFF" },
-    { name: "PostgreSQL", icon: SiPostgresql, category: "Database", color: "from-blue-400 to-blue-600", iconColor: "#FFFFFF" },
-    { name: "SQL Server", icon: SiMysql, category: "Database", color: "from-red-500 to-red-700", iconColor: "#FFFFFF" },
-    { name: "MongoDB", icon: SiMongodb, category: "Database", color: "from-green-500 to-green-700", iconColor: "#FFFFFF" },
-    { name: "Git", icon: SiGit, category: "DevOps", color: "from-orange-500 to-red-600", iconColor: "#FFFFFF" },
-    { name: "GitHub", icon: SiGithub, category: "DevOps", color: "from-gray-600 to-gray-900", iconColor: "#FFFFFF" },
-    { name: "Nginx", icon: SiNginx, category: "DevOps", color: "from-green-400 to-green-600", iconColor: "#FFFFFF" },
-    { name: "Linux", icon: SiLinux, category: "DevOps", color: "from-yellow-400 to-orange-500", iconColor: "#ffffffff" },
-    { name: "Vite", icon: SiVite, category: "Tools", color: "from-purple-400 to-purple-600", iconColor: "#FFFFFF" },
+    { name: "React", icon: SiReact, category: "Frontend", iconColor: "#61DAFB" },
+    { name: "React Native", icon: SiReact, category: "Mobile", iconColor: "#61DAFB" },
+    { name: "JavaScript", icon: SiJavascript, category: "Frontend", iconColor: "#F7DF1E" },
+    { name: "TypeScript", icon: SiTypescript, category: "Frontend", iconColor: "#3178C6" },
+    { name: ".NET", icon: SiDotnet, category: "Backend", iconColor: "#512BD4" },
+    { name: "C#", icon: TbBrandCSharp, category: "Backend", iconColor: "#9B4F96" },
+    { name: "Node.js", icon: SiNodedotjs, category: "Backend", iconColor: "#5FA04E" },
+    { name: "Express", icon: SiExpress, category: "Backend", iconColor: "#F5F5F7" },
+    { name: "PostgreSQL", icon: SiPostgresql, category: "Database", iconColor: "#4169E1" },
+    { name: "SQL Server", icon: SiMysql, category: "Database", iconColor: "#CC2927" },
+    { name: "MongoDB", icon: SiMongodb, category: "Database", iconColor: "#47A248" },
+    { name: "Git", icon: SiGit, category: "DevOps", iconColor: "#F05032" },
+    { name: "GitHub", icon: SiGithub, category: "DevOps", iconColor: "#F5F5F7" },
+    { name: "Nginx", icon: SiNginx, category: "DevOps", iconColor: "#009639" },
+    { name: "Linux", icon: SiLinux, category: "DevOps", iconColor: "#FCC624" },
+    { name: "Vite", icon: SiVite, category: "Tools", iconColor: "#B073FF" },
   ];
 
   // Triplicamos las habilidades para un scroll infinito más suave
   const duplicatedSkills = [...skills, ...skills, ...skills];
 
   return (
-    <section id="skills" className="py-24 px-8 overflow-hidden relative" style={{backgroundColor: 'rgba(2, 6, 23, 0.8)'}}>
+    <section id="skills" className="py-24 px-8 overflow-hidden relative border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl text-center mb-4 bg-gradient-primary bg-clip-text text-transparent font-bold">
+        <h2 className="text-4xl md:text-5xl text-center mb-4 font-semibold tracking-tight" style={{color: '#F5F5F7'}}>
           {t('skills.title')}
         </h2>
-        <p className="text-center mb-12 text-lg" style={{color: '#94A3B8'}}>
+        <p className="text-center mb-16 text-lg" style={{color: '#86868B'}}>
           {t('skills.subtitle')}
         </p>
 
         <div className="relative">
-          <div className="flex gap-6 animate-scroll-carousel group">
+          <div className="flex gap-4 animate-scroll-carousel">
             {duplicatedSkills.map((skill, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-48 h-56"
+                className="flex-shrink-0 w-44 h-48 rounded-2xl border flex flex-col items-center justify-center gap-3 transition-colors duration-200"
+                style={{ backgroundColor: '#1d1d1f', borderColor: 'rgba(255, 255, 255, 0.08)' }}
               >
-                <div className={`
-                  relative h-full bg-gradient-to-br ${skill.color} 
-                  rounded-2xl p-6 shadow-lg
-                  transform transition-all duration-300
-                  hover:scale-110 hover:shadow-2xl hover:shadow-primary-500/50
-                  hover:z-10
-                  flex flex-col items-center justify-center
-                  border border-white/10
-                  group/card
-                `}>
-                  <skill.icon 
-                    className="text-7xl mb-4 transform group-hover/card:scale-125 transition-transform duration-300"
-                    style={{ color: skill.iconColor }}
-                  />
-                  <h3 className="text-white font-bold text-xl text-center mb-2">
-                    {skill.name}
-                  </h3>
-                  <span className="text-white/80 text-sm px-3 py-1 bg-white/20 rounded-full backdrop-blur-sm">
-                    {skill.category}
-                  </span>
-                  
-                  {/* Efecto de brillo */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/20 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"></div>
-                </div>
+                <skill.icon
+                  className="text-5xl"
+                  style={{ color: skill.iconColor }}
+                />
+                <h3 className="font-medium text-base text-center" style={{color: '#F5F5F7'}}>
+                  {skill.name}
+                </h3>
+                <span className="text-xs px-2.5 py-1 rounded-full" style={{color: '#86868B', backgroundColor: 'rgba(255, 255, 255, 0.06)'}}>
+                  {skill.category}
+                </span>
               </div>
             ))}
           </div>
         </div>
-
-       
       </div>
 
-      {/* Gradientes de fade en los bordes - fuera del contenedor */}
-      <div className="absolute top-0 left-0 w-48 h-full pointer-events-none z-10" style={{background: 'linear-gradient(to right, #020617, rgba(2, 6, 23, 0.7), transparent)'}}></div>
-      <div className="absolute top-0 right-0 w-48 h-full pointer-events-none z-10" style={{background: 'linear-gradient(to left, #020617, rgba(2, 6, 23, 0.7), transparent)'}}></div>
+      {/* Gradientes de fade en los bordes */}
+      <div className="absolute top-0 left-0 w-32 h-full pointer-events-none z-10" style={{background: 'linear-gradient(to right, #000000, transparent)'}}></div>
+      <div className="absolute top-0 right-0 w-32 h-full pointer-events-none z-10" style={{background: 'linear-gradient(to left, #000000, transparent)'}}></div>
     </section>
   );
 };

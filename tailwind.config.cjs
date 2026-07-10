@@ -8,24 +8,28 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f5f7ff',
-          100: '#ebf0ff',
-          200: '#d6e0ff',
-          300: '#b3c5ff',
-          400: '#8ca3ff',
-          500: '#667eea',
-          600: '#5568d3',
-          700: '#4451b8',
-          800: '#363d94',
-          900: '#2d3270',
+          50: '#eaf4ff',
+          100: '#d4e9ff',
+          200: '#a9d3ff',
+          300: '#7ebdff',
+          400: '#52a7ff',
+          500: '#2997ff',
+          600: '#0071e3',
+          700: '#005bb5',
+          800: '#004a94',
+          900: '#003a75',
         },
-        secondary: {
-          500: '#764ba2',
-          600: '#5f3c82',
+        ink: {
+          DEFAULT: '#f5f5f7',
+          muted: '#86868b',
+        },
+        surface: {
+          DEFAULT: '#000000',
+          raised: '#1d1d1f',
         },
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #2997ff 0%, #0071e3 100%)',
       },
       keyframes: {
         'scroll': {
