@@ -8,11 +8,11 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false); // Cerrar menú al hacer clic
+    setIsMenuOpen(false);
   };
 
   const navLinkStyle = {
-    color: '#a1a1a6',
+    color: '#a1a1aa',
     fontSize: '0.875rem',
   };
 
@@ -22,15 +22,14 @@ const Navbar = () => {
     { id: 'experience', label: t('nav.experience') },
     { id: 'education', label: t('nav.education') },
     { id: 'projects', label: t('nav.projects') },
-    { id: 'skills', label: t('nav.skills') },
     { id: 'contact', label: t('nav.contact') },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 backdrop-blur-xl z-50 border-b" style={{backgroundColor: 'rgba(0, 0, 0, 0.8)', borderColor: 'rgba(255, 255, 255, 0.08)'}}>
+    <nav className="sticky top-0 z-50 backdrop-blur-xl" style={{backgroundColor: 'rgba(3, 3, 3, 0.7)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)'}}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center h-14">
-          <span className="text-base font-semibold tracking-tight" style={{color: '#F5F5F7'}}>
+        <div className="flex justify-between items-center h-16">
+          <span className="text-base font-bold tracking-tight text-white">
             Javier Orellana
           </span>
 
@@ -43,8 +42,8 @@ const Navbar = () => {
                     onClick={() => scrollToSection(link.id)}
                     className="cursor-pointer transition-colors duration-200"
                     style={navLinkStyle}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#F5F5F7'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#a1a1a6'}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#a1a1aa'}
                   >
                     {link.label}
                   </a>
@@ -52,15 +51,26 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <button
-              onClick={toggleLanguage}
-              className="px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 border"
-              style={{color: '#F5F5F7', borderColor: 'rgba(255, 255, 255, 0.16)'}}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.16)'}
-            >
-              {language === 'es' ? 'EN' : 'ES'}
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={toggleLanguage}
+                className="px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 border"
+                style={{color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.14)'}}
+                onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)'}
+                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.14)'}
+              >
+                {language === 'es' ? 'EN' : 'ES'}
+              </button>
+              <a
+                onClick={() => scrollToSection('contact')}
+                className="px-4 py-1.5 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-200"
+                style={{backgroundColor: '#0070F3', color: '#ffffff'}}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#338eff'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0070F3'}
+              >
+                {t('nav.contact')}
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -68,14 +78,14 @@ const Navbar = () => {
             <button
               onClick={toggleLanguage}
               className="px-3 py-1 rounded-full text-xs font-medium border"
-              style={{color: '#F5F5F7', borderColor: 'rgba(255, 255, 255, 0.16)'}}
+              style={{color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.14)'}}
             >
               {language === 'es' ? 'EN' : 'ES'}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 transition-colors"
-              style={{color: '#F5F5F7'}}
+              style={{color: '#ffffff'}}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (

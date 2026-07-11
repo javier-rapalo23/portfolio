@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { getWhatsAppLink } from '../constants';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -48,32 +50,57 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 px-8 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
+    <section id="contact" className="py-32 lg:py-48 px-8 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.05)'}}>
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl mb-4 font-semibold tracking-tight" style={{color: '#F5F5F7'}}>
-          {t('contact.title')}
-        </h2>
-        <p className="leading-relaxed mb-14 text-lg" style={{color: '#a1a1a6'}}>
-          {t('contact.description')}
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-5xl mb-3 text-white">
+            {t('contact.title')}
+          </h2>
+          <p className="text-xl font-semibold mb-4" style={{color: '#0070F3'}}>
+            {t('contact.subtitle')}
+          </p>
+          <p className="leading-relaxed mb-10 text-lg" style={{color: '#a1a1aa'}}>
+            {t('contact.description')}
+          </p>
+          <a
+            href={getWhatsAppLink(t('hero.whatsappMessage'))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 rounded-full font-semibold transition-colors duration-200 mb-14"
+            style={{backgroundColor: '#0070F3', color: '#ffffff'}}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#338eff'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0070F3'}
+          >
+            {t('contact.whatsappCta')}
+          </a>
+        </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-          {contactMethods.map((method) => (
-            <a
+          {contactMethods.map((method, i) => (
+            <motion.a
               key={method.label}
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="flex items-center gap-4 p-5 rounded-2xl border transition-colors duration-200"
-              style={{backgroundColor: '#1d1d1f', borderColor: 'rgba(255, 255, 255, 0.08)', color: '#F5F5F7'}}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.24)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'}
+              className="flex items-center gap-4 p-5 rounded-[20px] border transition-colors duration-300"
+              style={{backgroundColor: '#121212', borderColor: 'rgba(255, 255, 255, 0.08)', color: '#ffffff'}}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.06 }}
+              viewport={{ once: true }}
             >
-              <span style={{color: '#2997FF'}}>{method.icon}</span>
+              <span style={{color: '#0070F3'}}>{method.icon}</span>
               <span className="min-w-0">
-                <span className="block text-xs mb-0.5" style={{color: '#86868B'}}>{method.label}</span>
+                <span className="block text-xs mb-0.5" style={{color: '#8f8f8f'}}>{method.label}</span>
                 <span className="block truncate text-sm font-medium">{method.value}</span>
               </span>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>

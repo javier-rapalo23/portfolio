@@ -6,39 +6,31 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+      },
       colors: {
         primary: {
-          50: '#eaf4ff',
-          100: '#d4e9ff',
-          200: '#a9d3ff',
-          300: '#7ebdff',
-          400: '#52a7ff',
-          500: '#2997ff',
-          600: '#0071e3',
-          700: '#005bb5',
-          800: '#004a94',
-          900: '#003a75',
+          50: '#e6f1ff',
+          100: '#cce3ff',
+          200: '#99c7ff',
+          300: '#66aaff',
+          400: '#338eff',
+          500: '#0070f3',
+          600: '#0059c2',
+          700: '#004392',
+          800: '#002c61',
+          900: '#001631',
         },
         ink: {
-          DEFAULT: '#f5f5f7',
-          muted: '#86868b',
+          DEFAULT: '#ffffff',
+          muted: '#a1a1aa',
         },
         surface: {
-          DEFAULT: '#000000',
-          raised: '#1d1d1f',
+          DEFAULT: '#030303',
+          raised: '#121212',
+          hover: '#161616',
         },
-      },
-      backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #2997ff 0%, #0071e3 100%)',
-      },
-      keyframes: {
-        'scroll': {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-160%)' },
-        },
-      },
-      animation: {
-        'scroll-carousel': 'scroll 20s linear infinite',
       },
     },
   },
