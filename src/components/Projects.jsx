@@ -8,44 +8,52 @@ const Projects = () => {
     {
       title: t('projects.project1.title'),
       description: t('projects.project1.description'),
-      tech: ["React", "Node.js", "Express", "PostgreSQL", "Nginx", "PM2"],
-      github: "https://github.com/javier-rapalo23/Encomienda",
-      demo: "#"
+      tech: ["React", "Node.js", "PostgreSQL"],
+      github: "https://github.com/javier-rapalo23/vixo-coffee",
+      demo: "",
+      image: "/capturas/vixo_coffee.png",
     },
     {
       title: t('projects.project2.title'),
       description: t('projects.project2.description'),
       tech: ["React", "Node.js", "PostgreSQL", "REST API"],
       github: "https://github.com/javier-rapalo23/VI-ERP",
-      demo: "https://vi-erp-nine.vercel.app"
-    },
-    {
-      title: t('projects.project3.title'),
-      description: t('projects.project3.description'),
-      tech: ["React native", "JavaScript", "WatermelonDB"],
-      github: "https://github.com/javier-rapalo23/Finmaster",
-      demo: "https://github.com/javier-rapalo23/Finmaster/releases/download/v1.0.2/app-release.apk"
-    },
-    {
-      title: t('projects.project4.title'),
-      description: t('projects.project4.description'),
-      tech: ["React", "TypeScript", "Vite"],
-      github: "https://github.com/javier-rapalo23/R-ControlWeb",
-      demo: "https://r-control-web.vercel.app/"
+      demo: "https://vi-erp-nine.vercel.app",
+      image: "/capturas/vixo-erp.png",
     },
     {
       title: t('projects.project5.title'),
       description: t('projects.project5.description'),
       tech: ["React","Go", "TypeScript", "Vite"],
       github: "https://github.com/javier-rapalo23/freshcontrol-web",
-      demo: "https://freshcontrol-web.vercel.app/"
+      demo: "https://freshcontrol-web.vercel.app/",
+      image: "/capturas/freshcontrol-web.png",
+    },
+    {
+      title: t('projects.project4.title'),
+      description: t('projects.project4.description'),
+      tech: ["React", "TypeScript", "Vite"],
+      github: "https://github.com/javier-rapalo23/R-ControlWeb",
+      demo: "https://r-control-web.vercel.app/",
+      image: "/capturas/r-control-web.png",
+    },
+    {
+      title: t('projects.project3.title'),
+      description: t('projects.project3.description'),
+      tech: ["React native", "JavaScript", "WatermelonDB"],
+      github: "https://github.com/javier-rapalo23/Finmaster",
+      demo: "https://github.com/javier-rapalo23/Finmaster/releases/download/v1.0.2/app-release.apk",
+      image: "/capturas/Finmaster.jpg",
+      vertical: true,
     },
     {
       title: t('projects.project6.title'),
       description: t('projects.project6.description'),
       tech: ["React native", "TypeScript", "Sqlite"],
       github: "https://github.com/javier-rapalo23/R-ControlApp",
-      demo: "https://github.com/javier-rapalo23/R-ControlApp/releases/download/v1.0.1/app-release.apk"
+      demo: "https://github.com/javier-rapalo23/R-ControlApp/releases/download/v1.0.1/app-release.apk",
+      image: "/capturas/R-control-app.jpg",
+      vertical: true,
     },
   ];
 
@@ -55,11 +63,11 @@ const Projects = () => {
         <h2 className="text-4xl md:text-5xl text-center mb-16 text-white">
           {t('projects.title')}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="rounded-[20px] p-8 border transition-all duration-300"
+              className="rounded-[20px] border overflow-hidden transition-all duration-300"
               style={{
                 backgroundColor: '#121212',
                 borderColor: 'rgba(255, 255, 255, 0.08)',
@@ -72,6 +80,37 @@ const Projects = () => {
               transition={{ duration: 0.5, ease: 'easeOut', delay: (index % 2) * 0.08 }}
               viewport={{ once: true }}
             >
+              <div>
+                <div className="flex items-center gap-1.5 px-4 py-2.5" style={{backgroundColor: '#161616', borderBottom: '1px solid rgba(255, 255, 255, 0.06)'}}>
+                  <span className="w-2.5 h-2.5 rounded-full" style={{backgroundColor: '#ff5f57'}}></span>
+                  <span className="w-2.5 h-2.5 rounded-full" style={{backgroundColor: '#febc2e'}}></span>
+                  <span className="w-2.5 h-2.5 rounded-full" style={{backgroundColor: '#28c840'}}></span>
+                </div>
+                {project.image ? (
+                  project.vertical ? (
+                    <div className="w-full aspect-[4/5] flex items-center justify-center" style={{backgroundColor: '#0a0a0a'}}>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="h-full max-w-[70%] mx-auto object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      className="w-full aspect-video object-cover object-top"
+                    />
+                  )
+                ) : (
+                  <div className="w-full aspect-video flex items-center justify-center" style={{backgroundColor: '#0a0a0a'}}>
+                    <span className="text-3xl font-mono" style={{color: 'rgba(255, 255, 255, 0.15)'}}>{'</>'}</span>
+                  </div>
+                )}
+              </div>
+              <div className="p-8">
               <h3 className="text-xl mb-3 font-bold text-white">{project.title}</h3>
               <p className="leading-relaxed mb-6" style={{color: '#a1a1aa'}}>{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -86,6 +125,7 @@ const Projects = () => {
                 ))}
               </div>
               <div className="flex gap-6">
+                {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
@@ -100,6 +140,8 @@ const Projects = () => {
                   </svg>
                   {t('projects.github')}
                 </a>
+                )}
+                {project.demo && (
                 <a
                   href={project.demo}
                   target="_blank"
@@ -116,6 +158,8 @@ const Projects = () => {
                   </svg>
                   {t('projects.demo')}
                 </a>
+                )}
+              </div>
               </div>
             </motion.div>
           ))}

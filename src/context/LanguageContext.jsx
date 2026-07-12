@@ -96,8 +96,8 @@ export const translations = {
       github: 'GitHub',
       demo: 'Demo',
       project1: {
-        title: 'Encomienda Logistics System',
-        description: 'Sistema completo de gestión logística para envíos, inventarios, clientes y seguimiento. Incluye frontend modular en React, backend en Node.js/Express y despliegue en Linux con Nginx y PM2.',
+        title: 'Vixo Coffee',
+        description: 'Sistema ERP full-stack para un negocio de café, incluyendo gestión de inventario, catálogo de productos, procesamiento de pedidos y reportes. Construido con React, Node.js y PostgreSQL.',
       },
       project2: {
         title: 'Vixo',
@@ -229,8 +229,8 @@ export const translations = {
       github: 'GitHub',
       demo: 'Demo',
       project1: {
-        title: 'Encomienda Logistics System',
-        description: 'Complete logistics management system for shipments, inventories, customers and tracking. Includes modular frontend in React, backend in Node.js/Express and Linux deployment with Nginx and PM2.',
+        title: 'Vixo Coffee',
+        description: 'Full-stack ERP system for a coffee business, including inventory management, product catalog, order processing, and reporting. Built with React, Node.js, and PostgreSQL.',
       },
       project2: {
         title: 'Vixo',
