@@ -20,7 +20,6 @@ export const translations = {
       contact: 'Contacto',
     },
     hero: {
-      eyebrow: 'Desarrollo de Software · Honduras 🇭🇳',
       title: 'Software a medida que hace crecer tu negocio.',
       description: 'Diseño y desarrollo plataformas web y móviles rápidas, seguras y escalables para empresas en Honduras. De la idea al producto en producción.',
       viewProjects: 'Ver Proyectos',
@@ -39,7 +38,7 @@ export const translations = {
       serviceTag2: 'Apps Móviles',
       serviceTag3: 'Automatización',
       stackTitle: 'Stack Tecnológico',
-      locationTitle: 'Honduras 🇭🇳 · Remoto',
+      locationTitle: 'Honduras · Remoto',
       locationDescription: 'Disponible para nuevos proyectos',
       yearsExp: 'Años de Experiencia',
       projectsCompleted: 'Proyectos Completados',
@@ -170,7 +169,6 @@ export const translations = {
       contact: 'Contact',
     },
     hero: {
-      eyebrow: 'Software Development · Honduras 🇭🇳',
       title: 'Custom software that grows your business.',
       description: 'I design and build fast, secure and scalable web and mobile platforms for businesses in Honduras. From idea to production.',
       viewProjects: 'View Projects',
@@ -189,7 +187,7 @@ export const translations = {
       serviceTag2: 'Mobile Apps',
       serviceTag3: 'Automation',
       stackTitle: 'Tech Stack',
-      locationTitle: 'Honduras 🇭🇳 · Remote',
+      locationTitle: 'Honduras · Remote',
       locationDescription: 'Available for new projects',
       yearsExp: 'Years of Experience',
       projectsCompleted: 'Projects Completed',
