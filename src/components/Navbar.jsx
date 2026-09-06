@@ -1,129 +1,151 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useActiveSection, useScrolled } from '../hooks/useActiveSection';
+
+const SECTION_IDS = ['home', 'about', 'experience', 'education', 'projects', 'contact'];
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const active = useActiveSection(SECTION_IDS);
+  const scrolled = useScrolled(24);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
-  };
+  // Escape cierra el menú móvil; sin esto queda atrapado el foco del teclado.
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isMenuOpen]);
 
-  const navLinkStyle = {
-    color: '#a1a1aa',
-    fontSize: '0.875rem',
-  };
-
-  const navLinks = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.about') },
-    { id: 'experience', label: t('nav.experience') },
-    { id: 'education', label: t('nav.education') },
-    { id: 'projects', label: t('nav.projects') },
-    { id: 'contact', label: t('nav.contact') },
-  ];
+  const navLinks = SECTION_IDS.slice(1, 6).map((id) => ({ id, label: t(`nav.${id}`) }));
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl" style={{backgroundColor: 'rgba(3, 3, 3, 0.7)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)'}}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center h-16">
-          <span className="text-base font-bold tracking-tight text-white">
+    <header
+      className={`sticky top-0 z-nav transition-colors duration-300 ease-editorial ${
+        scrolled
+          ? 'border-b border-soft bg-[rgba(11,11,12,0.72)] backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent'
+      }`}
+    >
+      <div className="shell">
+        <div className="flex h-[4.5rem] items-center justify-between gap-6">
+          <a
+            href="#home"
+            className="font-display text-xl leading-none text-ink-strong transition-colors duration-200 hover:text-accent-soft"
+          >
             Javier Orellana
-          </span>
+          </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <ul className="flex gap-7 list-none">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a
-                    onClick={() => scrollToSection(link.id)}
-                    className="cursor-pointer transition-colors duration-200"
-                    style={navLinkStyle}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#a1a1aa'}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+          <nav aria-label="Principal" className="hidden lg:block">
+            <ul className="flex list-none items-center gap-1">
+              {navLinks.map((link) => {
+                const isActive = active === link.id;
+                return (
+                  <li key={link.id}>
+                    <a
+                      href={`#${link.id}`}
+                      aria-current={isActive ? 'true' : undefined}
+                      className={`relative flex items-center gap-2 rounded-full px-3 py-2 text-sm transition-colors duration-200 ${
+                        isActive ? 'text-ink-strong' : 'text-ink-muted hover:text-ink'
+                      }`}
+                    >
+                      <span
+                        aria-hidden
+                        className={`h-1 w-1 rounded-full transition-all duration-300 ease-editorial ${
+                          isActive ? 'scale-100 bg-accent opacity-100' : 'scale-0 opacity-0'
+                        }`}
+                      />
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
+          </nav>
 
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleLanguage}
-                className="px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 border"
-                style={{color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.14)'}}
-                onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)'}
-                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.14)'}
-              >
-                {language === 'es' ? 'EN' : 'ES'}
-              </button>
-              <a
-                onClick={() => scrollToSection('contact')}
-                className="px-4 py-1.5 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-200"
-                style={{backgroundColor: '#0070F3', color: '#ffffff'}}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#338eff'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0070F3'}
-              >
-                {t('nav.contact')}
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={toggleLanguage}
-              className="px-3 py-1 rounded-full text-xs font-medium border"
-              style={{color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.14)'}}
+              aria-label={t('a11y.switchLang')}
+              className="rounded-full border border-soft px-3 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-ink-muted transition-colors duration-200 hover:border-strong hover:text-ink-strong"
             >
               {language === 'es' ? 'EN' : 'ES'}
             </button>
+
+            <a href="#contact" className="hidden btn-primary !px-5 !py-2 !text-[0.8125rem] sm:inline-flex">
+              {t('nav.contact')}
+            </a>
+
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 transition-colors"
-              style={{color: '#ffffff'}}
-              aria-label="Toggle menu"
+              type="button"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
+              aria-label={isMenuOpen ? t('a11y.closeMenu') : t('a11y.openMenu')}
+              className="-mr-2 flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors duration-200 hover:bg-surface-high lg:hidden"
             >
-              {isMenuOpen ? (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              )}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                {isMenuOpen ? (
+                  <>
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </>
+                ) : (
+                  <>
+                    <line x1="3" y1="7" x2="21" y2="7" />
+                    <line x1="3" y1="17" x2="15" y2="17" />
+                  </>
+                )}
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
-            <ul className="flex flex-col list-none pt-2">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a
-                    onClick={() => scrollToSection(link.id)}
-                    className="block py-2.5 cursor-pointer transition-colors"
-                    style={navLinkStyle}
-                  >
-                    {link.label}
+        <AnimatePresence initial={false}>
+          {isMenuOpen && (
+            <motion.nav
+              id="mobile-nav"
+              aria-label="Principal móvil"
+              className="overflow-hidden lg:hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <ul className="list-none border-t border-faint py-3">
+                {navLinks.map((link) => (
+                  <li key={link.id}>
+                    <a
+                      href={`#${link.id}`}
+                      onClick={() => setIsMenuOpen(false)}
+                      aria-current={active === link.id ? 'true' : undefined}
+                      className={`flex items-baseline gap-4 py-3 text-base transition-colors duration-200 ${
+                        active === link.id ? 'text-ink-strong' : 'text-ink-muted'
+                      }`}
+                    >
+                      <span className="eyebrow tnum">
+                        {String(SECTION_IDS.indexOf(link.id)).padStart(2, '0')}
+                      </span>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li className="pt-3">
+                  <a href="#contact" onClick={() => setIsMenuOpen(false)} className="btn-primary w-full">
+                    {t('nav.contact')}
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-        )}
+              </ul>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </header>
   );
 };
 

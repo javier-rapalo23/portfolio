@@ -3,40 +3,205 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply text-white;
-    background-color: #030303;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    @apply bg-surface-base text-ink font-sans antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
-  h1, h2, h3, h4 {
-    font-weight: 800;
-    letter-spacing: -0.02em;
+  /* Grano fijo sobre toda la página: rompe la planitud digital del fondo. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3 {
+    @apply font-display font-normal;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h4, h5, h6 {
+    @apply font-sans font-semibold;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   section {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 6rem;
+  }
+
+  /* Anillo de foco visible en todo el sitio — requisito, no opción. */
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(200, 90, 60, 0.3);
+    color: theme('colors.ink.strong');
   }
 
   ::-webkit-scrollbar {
-    @apply w-2.5;
+    @apply w-2;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #030303;
+    @apply bg-surface-inset;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded;
-    background-color: #2e2e2e;
+    @apply rounded-full bg-surface-hover;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #454545;
+    @apply bg-ink-ghost;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* Etiqueta monoespaciada de sección: "01 / Servicios" */
+  .eyebrow {
+    @apply font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-faint;
+  }
+
+  /* Cifras alineadas verticalmente en columnas de datos. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  .rule {
+    @apply border-t border-faint;
+  }
+
+  /* Superficie elevada estándar. El borde superior claro simula
+     una luz cenital única y consistente en toda la página. */
+  .panel {
+    @apply bg-surface-raised border border-soft shadow-soft;
+    box-shadow:
+      inset 0 1px 0 0 rgba(241, 237, 231, 0.05),
+      0 1px 2px rgba(10, 7, 5, 0.5),
+      0 10px 28px -14px rgba(10, 7, 5, 0.8);
+  }
+
+  .panel-interactive {
+    @apply panel transition-[transform,border-color,box-shadow] duration-300 ease-editorial;
+  }
+
+  .panel-interactive:hover {
+    @apply border-strong -translate-y-1;
+    box-shadow:
+      inset 0 1px 0 0 rgba(241, 237, 231, 0.08),
+      0 2px 6px rgba(10, 7, 5, 0.6),
+      0 28px 56px -28px rgba(10, 7, 5, 1);
+  }
+
+  .panel-interactive:active {
+    @apply translate-y-0 duration-100;
+  }
+
+  /* Píldora de metadatos: periodo, tecnología, ubicación. */
+  .chip {
+    @apply inline-flex items-center rounded-full border border-soft px-3 py-1
+           font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-ink-muted;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm font-semibold transition-all duration-200 ease-editorial;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-surface-inset;
+  }
+
+  .btn-primary:hover {
+    @apply bg-accent-soft -translate-y-0.5;
+  }
+
+  .btn-primary:active {
+    @apply translate-y-0 scale-[0.98] duration-75;
+  }
+
+  .btn-ghost {
+    @apply btn border border-strong text-ink;
+  }
+
+  .btn-ghost:hover {
+    @apply border-accent bg-accent-wash text-ink-strong -translate-y-0.5;
+  }
+
+  .btn-ghost:active {
+    @apply translate-y-0 scale-[0.98] duration-75;
+  }
+
+  /* Enlace de texto con subrayado que crece desde la izquierda. */
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 text-accent transition-colors duration-200;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-0 bg-accent-soft transition-[width] duration-300 ease-editorial;
+  }
+
+  .link-underline:hover {
+    @apply text-accent-soft;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Degradado radial ambiental: rompe la uniformidad del fondo plano. */
+  .ambient {
+    background-image: radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(200, 90, 60, 0.07) 0%,
+      rgba(200, 90, 60, 0) 70%
+    );
+  }
+}
+
+/* Respeta a quien pide menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

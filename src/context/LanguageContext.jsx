@@ -4,6 +4,13 @@ const LanguageContext = createContext();
 
 export const translations = {
   es: {
+    a11y: {
+      skip: 'Saltar al contenido',
+      openMenu: 'Abrir menú de navegación',
+      closeMenu: 'Cerrar menú de navegación',
+      switchLang: 'Cambiar el idioma a inglés',
+      backToTop: 'Volver al inicio de la página',
+    },
     nav: {
       home: 'Inicio',
       about: 'Servicios',
@@ -19,6 +26,9 @@ export const translations = {
       viewProjects: 'Ver Proyectos',
       contact: 'Iniciar un Proyecto',
       whatsappMessage: 'Hola Javier, quiero cotizar una solución de software para mi negocio.',
+      role: 'Desarrollador Full Stack',
+      available: 'Disponible para nuevos proyectos',
+      scroll: 'Desliza',
     },
     about: {
       title: 'Servicios',
@@ -37,6 +47,7 @@ export const translations = {
     experience: {
       title: 'Experiencia',
       achievements: 'Logros principales',
+      stackLabel: 'Stack',
       exp1: {
         role: 'Desarrollador de Software Principal y Gerente de Operaciones',
         company: 'Centro de Reciclaje Santa Cruz',
@@ -93,8 +104,10 @@ export const translations = {
     },
     projects: {
       title: 'Proyectos',
+      subtitle: 'Trabajo seleccionado',
       github: 'GitHub',
       demo: 'Demo',
+      download: 'Descargar APK',
       project1: {
         title: 'Vixo Coffee',
         description: 'Sistema ERP full-stack para un negocio de café, incluyendo gestión de inventario, catálogo de productos, procesamiento de pedidos y reportes. Construido con React, Node.js y PostgreSQL.',
@@ -129,13 +142,25 @@ export const translations = {
       emailLabel: 'Email',
       messageLabel: 'Mensaje',
       sendButton: 'Enviar Mensaje',
-      successMessage: '¡Mensaje enviado! (Esta es una demo)',
+      successMessage: 'Mensaje enviado.',
+      methodsTitle: 'Otras vías',
+      response: 'Respuesta en menos de 24 horas',
     },
     footer: {
       text: 'Desarrollador de Software',
+      rights: 'Todos los derechos reservados.',
+      built: 'Diseñado y construido en Honduras.',
+      top: 'Arriba',
     },
   },
   en: {
+    a11y: {
+      skip: 'Skip to content',
+      openMenu: 'Open navigation menu',
+      closeMenu: 'Close navigation menu',
+      switchLang: 'Switch language to Spanish',
+      backToTop: 'Back to top of page',
+    },
     nav: {
       home: 'Home',
       about: 'Services',
@@ -151,6 +176,9 @@ export const translations = {
       viewProjects: 'View Projects',
       contact: 'Start a Project',
       whatsappMessage: 'Hi Javier, I would like to get a quote for a software solution for my business.',
+      role: 'Full Stack Developer',
+      available: 'Available for new projects',
+      scroll: 'Scroll',
     },
     about: {
       title: 'Services',
@@ -169,6 +197,7 @@ export const translations = {
     experience: {
       title: 'Experience',
       achievements: 'Key Achievements',
+      stackLabel: 'Stack',
       exp1: {
         role: 'Lead Software Developer & Operations Manager',
         company: 'Centro de Reciclaje Santa Cruz',
@@ -226,8 +255,10 @@ export const translations = {
     },
     projects: {
       title: 'Projects',
+      subtitle: 'Selected work',
       github: 'GitHub',
       demo: 'Demo',
+      download: 'Download APK',
       project1: {
         title: 'Vixo Coffee',
         description: 'Full-stack ERP system for a coffee business, including inventory management, product catalog, order processing, and reporting. Built with React, Node.js, and PostgreSQL.',
@@ -262,10 +293,15 @@ export const translations = {
       emailLabel: 'Email',
       messageLabel: 'Message',
       sendButton: 'Send Message',
-      successMessage: 'Message sent! (This is a demo)',
+      successMessage: 'Message sent.',
+      methodsTitle: 'Other channels',
+      response: 'I reply in under 24 hours',
     },
     footer: {
       text: 'Software Developer',
+      rights: 'All rights reserved.',
+      built: 'Designed and built in Honduras.',
+      top: 'Top',
     },
   },
 };

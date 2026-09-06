@@ -23,7 +23,10 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Sin eslint-plugin-react, ESLint no marca como usados los identificadores
+      // que solo aparecen en JSX. Los componentes en mayuscula ya quedan cubiertos
+      // por el patron; 'motion' (framer-motion) es minuscula y hay que anadirlo.
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)' }],
     },
   },
 ])

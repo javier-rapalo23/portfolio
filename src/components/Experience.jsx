@@ -1,126 +1,113 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import SectionHeader from './SectionHeader';
+
+// El stack de cada puesto se deriva de los logros que describe esa misma
+// entrada. Antes las listas estaban desplazadas una posición y exp4 no se
+// renderizaba, aunque sus textos ya existían en las traducciones.
+const jobs = [
+  { key: 'exp1', tech: ['React', 'React Native', 'Node.js'] },
+  {
+    key: 'exp2',
+    tech: ['React', 'React Native', 'C#', '.NET', 'Node.js', 'SQL Server', 'Linux', 'Nginx', 'PM2'],
+  },
+  {
+    key: 'exp3',
+    tech: ['C#', 'JavaScript', 'MVC', 'Entity Framework', 'PostgreSQL', 'SQL Server', 'GitHub'],
+  },
+  { key: 'exp4', tech: ['Oracle APEX', 'PL/SQL', 'Oracle Database'] },
+];
+
+const ease = [0.22, 1, 0.36, 1];
+
+/** t() devuelve la propia clave cuando no existe: eso marca el final de la lista. */
+const collectAchievements = (t, expKey) => {
+  const out = [];
+  for (let i = 1; i <= 10; i += 1) {
+    const key = `experience.${expKey}.achievement${i}`;
+    const value = t(key);
+    if (value === key) break;
+    out.push(value);
+  }
+  return out;
+};
 
 const Experience = () => {
   const { t } = useLanguage();
 
-  const experiences = [
-    {
-      id: 1,
-      role: t('experience.exp1.role'),
-      company: t('experience.exp1.company'),
-      location: t('experience.exp1.location'),
-      period: t('experience.exp1.period'),
-      achievements: [
-        t('experience.exp1.achievement1'),
-        t('experience.exp1.achievement2'),
-        t('experience.exp1.achievement3'),
-      ],
-      technologies: ['React', 'React Native', 'C#', '.NET', 'Node.js', 'SQL Server', 'Linux', 'Nginx', 'PM2'],
-    },
-    {
-      id: 2,
-      role: t('experience.exp2.role'),
-      company: t('experience.exp2.company'),
-      location: t('experience.exp2.location'),
-      period: t('experience.exp2.period'),
-      achievements: [
-        t('experience.exp2.achievement1'),
-        t('experience.exp2.achievement2'),
-        t('experience.exp2.achievement3'),
-        t('experience.exp2.achievement4'),
-      ],
-      technologies: ['C#', 'JavaScript', 'MVC', 'Entity Framework', 'PostgreSQL', 'SQL Server', 'GitHub'],
-    },
-    {
-      id: 3,
-      role: t('experience.exp3.role'),
-      company: t('experience.exp3.company'),
-      location: t('experience.exp3.location'),
-      period: t('experience.exp3.period'),
-      achievements: [
-        t('experience.exp3.achievement1'),
-        t('experience.exp3.achievement2'),
-        t('experience.exp3.achievement3'),
-      ],
-      technologies: ['Oracle APEX', 'PL/SQL', 'Oracle Database'],
-    },
-  ];
-
   return (
-    <section id="experience" className="py-32 lg:py-48 px-8 border-t" style={{borderColor: 'rgba(255, 255, 255, 0.05)'}}>
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl text-center mb-16 text-white">
-          {t('experience.title')}
-        </h2>
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.id}
-              className="p-8 rounded-[20px] border transition-colors duration-300"
-              style={{ backgroundColor: '#121212', borderColor: 'rgba(255, 255, 255, 0.08)' }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.05 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                <div className="mb-4 md:mb-0">
-                  <h3 className="text-2xl font-bold mb-2 text-white">
-                    {exp.role}
-                  </h3>
-                  <p className="text-lg mb-2" style={{color: '#a1a1aa'}}>
-                    {exp.company}
-                  </p>
-                  <p className="text-sm" style={{color: '#8f8f8f'}}>
-                    {exp.location}
-                  </p>
-                </div>
+    <section id="experience" className="py-28 lg:py-40">
+      <div className="shell">
+        <SectionHeader index="02" label={t('nav.experience')} title={t('experience.title')} />
+
+        <ol className="mt-14 list-none lg:mt-20">
+          {jobs.map((job, index) => {
+            const achievements = collectAchievements(t, job.key);
+
+            return (
+              <motion.li
+                key={job.key}
+                className="group relative grid grid-cols-12 gap-y-6 border-t border-soft py-10 lg:gap-x-8 lg:py-14"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease, delay: 0.04 }}
+                viewport={{ once: true, margin: '-80px' }}
+              >
+                {/* Marca de acento sobre la regla: crece al pasar el cursor. */}
                 <span
-                  className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap border"
-                  style={{color: '#a1a1aa', borderColor: 'rgba(255, 255, 255, 0.14)'}}
-                >
-                  {exp.period}
-                </span>
-              </div>
+                  aria-hidden
+                  className="absolute -top-px left-0 h-px w-12 bg-accent transition-[width] duration-500 ease-editorial group-hover:w-28"
+                />
 
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold mb-3 uppercase tracking-wide" style={{color: '#8f8f8f'}}>
-                  {t('experience.achievements')}
-                </h4>
-                <ul className="space-y-2">
-                  {exp.achievements.map((achievement, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start"
-                      style={{color: '#a1a1aa'}}
-                    >
-                      <span className="mr-3 mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{backgroundColor: '#0070F3'}}></span>
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div className="col-span-12 lg:col-span-3">
+                  <div className="lg:sticky lg:top-28">
+                    <span className="eyebrow tnum text-accent">
+                      {String(jobs.length - index).padStart(2, '0')}
+                    </span>
+                    <p className="tnum mt-3 font-mono text-sm text-ink">
+                      {t(`experience.${job.key}.period`)}
+                    </p>
+                    <p className="mt-2 text-sm leading-snug text-ink-faint">
+                      {t(`experience.${job.key}.location`)}
+                    </p>
+                  </div>
+                </div>
 
-              <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 rounded-full text-sm border"
-                    style={{
-                      color: '#a1a1aa',
-                      borderColor: 'rgba(255, 255, 255, 0.12)',
-                    }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div className="col-span-12 lg:col-span-9">
+                  <h3 className="font-display text-2xl leading-snug text-ink-strong sm:text-3xl">
+                    {t(`experience.${job.key}.role`)}
+                  </h3>
+                  <p className="mt-2 text-base font-medium text-accent-soft">
+                    {t(`experience.${job.key}.company`)}
+                  </p>
+
+                  <ul className="mt-7 list-none space-y-3">
+                    {achievements.map((achievement) => (
+                      <li key={achievement} className="flex gap-4">
+                        <span
+                          aria-hidden
+                          className="mt-[0.7rem] h-px w-4 shrink-0 bg-ink-ghost"
+                        />
+                        <span className="max-w-prose leading-relaxed text-ink-muted">
+                          {achievement}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-2">
+                    <span className="eyebrow mr-1">{t('experience.stackLabel')}</span>
+                    {job.tech.map((tech) => (
+                      <span key={tech} className="chip">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );
