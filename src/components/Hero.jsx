@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { getWhatsAppLink } from '../constants';
@@ -13,6 +14,8 @@ const rise = (delay = 0) => ({
 
 const Hero = () => {
   const { t } = useLanguage();
+  // Caja que limita el arrastre de la pegatina.
+  const portraitRef = useRef(null);
 
   const stats = [
     { value: '3+', label: t('about.yearsExp') },
@@ -47,7 +50,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease, delay: 0.25 }}
           >
-            <div className="relative w-full max-w-[19rem]">
+            <div ref={portraitRef} className="relative w-full max-w-[19rem]">
               <div
                 aria-hidden
                 className="absolute -bottom-3 -right-3 h-full w-full rounded-panel border border-accent"
@@ -59,6 +62,43 @@ const Hero = () => {
                 height="760"
                 className="relative aspect-[4/5] w-full rounded-panel border border-soft object-cover shadow-lift"
               />
+
+              {/* Pegatina: entra con un rebote de muelle, girada y desbordando
+                  la esquina inferior izquierda. Va abajo a proposito, para que
+                  cubra buena parte del retrato sin tapar la cara. */}
+              <motion.div
+                className="absolute -bottom-6 -left-5 z-10 w-[90%] cursor-grab active:cursor-grabbing lg:-bottom-8 lg:-left-10"
+                drag
+                dragConstraints={portraitRef}
+                dragElastic={0.12}
+                dragMomentum={false}
+                whileDrag={{ scale: 1.08, rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.6, rotate: -26 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  rotate: -9,
+                  transition: { type: 'spring', stiffness: 240, damping: 16, delay: 0.55 },
+                }}
+                whileHover={{
+                  rotate: -3,
+                  scale: 1.06,
+                  transition: { type: 'spring', stiffness: 300, damping: 20 },
+                }}
+              >
+                <div className="aspect-square overflow-hidden rounded-full border-[6px] border-ink shadow-lift">
+                  <img
+                    src="/gatogordo.jpg"
+                    alt="Un gato con esmoquin y pajarita, pegado como sticker sobre el retrato"
+                    width="480"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    className="h-full w-full scale-110 object-cover object-[50%_45%]"
+                  />
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 

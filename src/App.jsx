@@ -6,13 +6,16 @@ import Education from './components/Education'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { MotionConfig } from 'framer-motion'
 import { useLanguage } from './context/LanguageContext'
 
 function App() {
   const { t } = useLanguage();
 
   return (
-    <>
+    // El CSS solo frena animaciones CSS. framer-motion anima por JS,
+    // asi que necesita que se lo digan aparte.
+    <MotionConfig reducedMotion="user">
       {/* Primer elemento tabulable: permite saltarse la navegación. */}
       <a
         href="#main"
@@ -33,7 +36,7 @@ function App() {
       </main>
 
       <Footer />
-    </>
+    </MotionConfig>
   )
 }
 
