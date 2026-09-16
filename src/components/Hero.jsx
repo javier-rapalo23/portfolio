@@ -63,9 +63,17 @@ const Hero = () => {
                 className="relative aspect-[4/5] w-full rounded-panel border border-soft object-cover shadow-lift"
               />
 
-              {/* Pegatina: entra con un rebote de muelle, girada y desbordando
-                  la esquina inferior izquierda. Va abajo a proposito, para que
-                  cubra buena parte del retrato sin tapar la cara. */}
+              {/* PEGATINA DEL GATO - DESACTIVADA POR AHORA.
+
+                  Para reactivarla: borra esta linea de apertura del comentario
+                  junto con este bloque de texto, y el cierre que hay justo
+                  despues de </motion.div>, al final.
+
+                  Entra con un rebote de muelle, girada y desbordando la esquina
+                  inferior izquierda, y se arrastra dentro del marco del retrato.
+                  Ese marco es lo que mide portraitRef: por eso el ref sigue
+                  puesto en el div de arriba aunque ahora no haga nada.
+
               <motion.div
                 className="absolute -bottom-6 -left-5 z-10 w-[90%] cursor-grab active:cursor-grabbing lg:-bottom-8 lg:-left-10"
                 drag
@@ -99,6 +107,7 @@ const Hero = () => {
                   />
                 </div>
               </motion.div>
+              */}
             </div>
           </motion.div>
 
